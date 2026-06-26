@@ -4,9 +4,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import type { RoadmapStage } from "@/content/roadmap.stages";
 
-/** Minimum 40% opacity dark scrim over the full background image. */
-const SCRIM_CLASS = "bg-black/50";
-
 type RoadmapBackgroundProps = {
   stage: RoadmapStage;
 };
@@ -32,8 +29,8 @@ export function RoadmapBackground({ stage }: RoadmapBackgroundProps) {
           priority={stage.id === "brief"}
         />
 
-        {/* Full-bleed scrim — uniform ≥40% dark overlay for typography contrast */}
-        <div className={`absolute inset-0 ${SCRIM_CLASS}`} />
+        {/* Uniform scrim — ≥40% dark overlay */}
+        <div className="absolute inset-0 bg-black/50" />
       </motion.div>
     </AnimatePresence>
   );

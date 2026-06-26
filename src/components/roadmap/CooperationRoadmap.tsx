@@ -31,7 +31,7 @@ export function CooperationRoadmap() {
           <RoadmapBackground stage={activeStage} />
 
           <div className="relative p-8 sm:p-12 lg:p-16">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
               Mapa współpracy
             </p>
             <h2
@@ -40,11 +40,11 @@ export function CooperationRoadmap() {
             >
               Twój import krok po kroku
             </h2>
-            <p className="mt-2 max-w-lg text-sm text-white/50">
+            <p className="mt-2 max-w-lg text-sm text-white/70">
               Interaktywna ścieżka — od briefu po dostawę pod Twój adres.
             </p>
 
-            <div className="mt-10 lg:mt-14">
+            <div className="mt-8 lg:mt-10">
               <RoadmapStagePanel
                 stage={activeStage}
                 stageIndex={activeIndex}

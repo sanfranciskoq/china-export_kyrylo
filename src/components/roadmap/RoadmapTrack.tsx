@@ -31,8 +31,8 @@ export function RoadmapTrack({
 
   return (
     <div className="relative z-10 mt-12">
-      <p className="mb-6 flex items-center gap-2 text-xs text-white/40">
-        <GripHorizontal className="h-4 w-4" />
+      <p className="track-text mb-6 flex items-center gap-2 text-sm font-medium text-white/90">
+        <GripHorizontal className="h-4 w-4 shrink-0 text-white/80" />
         Przeciągnij kontener, użyj kółka myszy lub strzałek ← →
       </p>
 
@@ -45,23 +45,24 @@ export function RoadmapTrack({
         aria-valuenow={activeIndex}
         aria-valuetext={roadmapStages[activeIndex].title}
         tabIndex={0}
-        className="relative cursor-grab touch-none select-none py-8 active:cursor-grabbing"
+        className="relative cursor-grab touch-none select-none pt-14 pb-16 active:cursor-grabbing"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
         onKeyDown={onKeyDown}
       >
-        {/* Track rail */}
-        <div className="relative h-2 rounded-full bg-white/10">
-          <div
-            className="absolute left-0 top-0 h-full rounded-full bg-accent transition-[width] duration-75"
-            style={{ width: handlePosition }}
-          />
-        </div>
+        {/* Rail band: handle above, line + nodes in the middle */}
+        <div className="relative h-10">
+          {/* Track rail */}
+          <div className="absolute inset-x-0 top-1/2 h-2 -translate-y-1/2 rounded-full bg-white/20">
+            <div
+              className="absolute left-0 top-0 h-full rounded-full bg-accent-light transition-[width] duration-75"
+              style={{ width: handlePosition }}
+            />
+          </div>
 
-        {/* Stage nodes */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2">
+          {/* Stage nodes */}
           {roadmapStages.map((stage, i) => {
             const position = `${(i / (roadmapStages.length - 1)) * 100}%`;
             const isActive = i === activeIndex;
@@ -85,37 +86,52 @@ export function RoadmapTrack({
                   className={cn(
                     "flex h-4 w-4 items-center justify-center rounded-full border-2 transition-all duration-200",
                     isActive
-                      ? "scale-150 border-accent bg-accent shadow-lg shadow-accent/40"
+                      ? "scale-150 border-accent-light bg-accent-light shadow-lg shadow-black/40"
                       : isPast
-                        ? "border-accent/60 bg-accent/60"
-                        : "border-white/30 bg-slate-800",
+                        ? "border-accent-light/70 bg-accent-light/70"
+                        : "border-white/50 bg-slate-900/80",
                   )}
                 />
-                <span
-                  className={cn(
-                    "absolute left-1/2 top-6 hidden w-max max-w-[100px] -translate-x-1/2 text-center text-[10px] font-medium leading-tight sm:block lg:max-w-[120px] lg:text-xs",
-                    isActive ? "text-white" : "text-white/40",
-                  )}
-                >
-                  {stage.title}
-                </span>
               </button>
             );
           })}
+
+          {/* Draggable container handle — sits above the rail, never over labels */}
+          <div
+            className={cn(
+              "pointer-events-none absolute top-1/2 -translate-x-1/2 -translate-y-[calc(100%+0.875rem)] transition-transform duration-75",
+              isDragging && "scale-110",
+            )}
+            style={{ left: handlePosition }}
+            aria-hidden
+          >
+            <div className="flex h-12 w-16 items-center justify-center rounded-md border-2 border-accent-light bg-black/40 shadow-lg shadow-black/40 backdrop-blur-sm">
+              <Container className="h-6 w-6 text-accent-light" />
+            </div>
+          </div>
         </div>
 
-        {/* Draggable container handle */}
-        <div
-          className={cn(
-            "absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-75",
-            isDragging && "scale-110",
-          )}
-          style={{ left: handlePosition }}
-          aria-hidden
-        >
-          <div className="flex h-12 w-16 items-center justify-center rounded-md border-2 border-accent bg-accent/20 shadow-lg shadow-accent/20 backdrop-blur-sm">
-            <Container className="h-6 w-6 text-accent" />
-          </div>
+        {/* Stage labels — separate row below the rail */}
+        <div className="relative mt-5 h-10 sm:h-12">
+          {roadmapStages.map((stage, i) => {
+            const position = `${(i / (roadmapStages.length - 1)) * 100}%`;
+            const isActive = i === activeIndex;
+
+            return (
+              <span
+                key={stage.id}
+                className={cn(
+                  "track-text absolute hidden w-max max-w-[88px] -translate-x-1/2 text-center text-[10px] leading-tight sm:block lg:max-w-[110px] lg:text-xs",
+                  isActive
+                    ? "font-semibold text-white"
+                    : "font-medium text-white/80",
+                )}
+                style={{ left: position }}
+              >
+                {stage.title}
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>

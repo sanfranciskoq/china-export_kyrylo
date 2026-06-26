@@ -1,23 +1,60 @@
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 import { HeroTooltip } from "@/components/hero/HeroTooltip";
+import { cn } from "@/lib/utils";
+
+type HeroButtonVariant = "primary" | "secondary" | "tertiary";
+
+const variants: Record<HeroButtonVariant, string> = {
+  primary:
+    "bg-accent-light hover:bg-[#dbaa47] text-white shadow-lg shadow-accent-light/25 border border-accent-light/20",
+  secondary:
+    "bg-white/10 hover:bg-white/15 text-white border border-white/30 backdrop-blur-sm",
+  tertiary:
+    "bg-transparent hover:bg-white/5 text-white/80 hover:text-white border border-transparent underline-offset-4 hover:underline",
+};
+
+function HeroButton({
+  variant,
+  href,
+  children,
+  className,
+}: {
+  variant: HeroButtonVariant;
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-navy",
+        variants[variant],
+        className,
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
 
 export function HeroCTAs() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-        <Button variant="primary" href="/kontakt" className="sm:min-w-[180px]">
+        <HeroButton variant="primary" href="/kontakt" className="sm:min-w-[180px]">
           Wyślij zapytanie
-        </Button>
-        <Button
+        </HeroButton>
+        <HeroButton
           variant="secondary"
           href="/kalkulator"
           className="sm:min-w-[180px]"
         >
           Oblicz transport
-        </Button>
-        <Button variant="tertiary" href="/konsultacja">
+        </HeroButton>
+        <HeroButton variant="tertiary" href="/konsultacja">
           Umów konsultację
-        </Button>
+        </HeroButton>
       </div>
       <HeroTooltip text="Powierz nam cały proces albo wybierz jeden etap." />
     </div>

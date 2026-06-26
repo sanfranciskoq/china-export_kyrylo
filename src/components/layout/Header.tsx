@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/#roadmap", label: "Proces" },
+  { href: "/#uslugi", label: "Usługi" },
   { href: "/kalkulator", label: "Kalkulator" },
   { href: "/kontakt", label: "Kontakt" },
 ];
@@ -46,7 +47,7 @@ export function Header() {
           </button>
           <Link
             href="/kontakt"
-            className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
+            className="rounded-lg border border-accent-light/20 bg-accent-light px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-accent-light/25 transition-colors hover:bg-[#dbaa47]"
           >
             Wyślij zapytanie
           </Link>
@@ -81,7 +82,7 @@ export function Header() {
           ))}
           <Link
             href="/kontakt"
-            className="mt-2 rounded-lg bg-accent px-3 py-2.5 text-center text-sm font-semibold text-white"
+            className="mt-2 rounded-lg border border-accent-light/20 bg-accent-light px-3 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-accent-light/25 transition-colors hover:bg-[#dbaa47]"
             onClick={() => setOpen(false)}
           >
             Wyślij zapytanie

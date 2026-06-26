@@ -17,7 +17,7 @@ export function RoadmapStagePanel({
   totalStages,
 }: RoadmapStagePanelProps) {
   return (
-    <div className="relative z-10 min-h-[220px]">
+    <div className="relative z-10 min-h-[180px]">
       <AnimatePresence mode="wait">
         <motion.div
           key={stage.id}
@@ -26,13 +26,13 @@ export function RoadmapStagePanel({
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/40">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/55">
             Etap {stageIndex + 1} / {totalStages}
           </p>
-          <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+          <h3 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
             {stage.title}
-          </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+          </h3>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
             {stage.description}
           </p>
           <Link
