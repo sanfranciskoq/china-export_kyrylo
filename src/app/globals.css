@@ -136,19 +136,22 @@ body {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(28, 33, 40, 0.08) 42%,
-    rgba(28, 33, 40, 0.08) 58%,
-    rgba(28, 33, 40, 0.45) 82%,
-    rgba(28, 33, 40, 0.85) 100%
+    rgba(28, 33, 40, 0.05) 32%,
+    rgba(28, 33, 40, 0.1) 48%,
+    rgba(28, 33, 40, 0.22) 62%,
+    rgba(28, 33, 40, 0.42) 76%,
+    rgba(28, 33, 40, 0.68) 90%,
+    var(--surface) 100%
   );
   pointer-events: none;
 }
 
 .hero-map-vignette {
   background: radial-gradient(
-    ellipse 90% 70% at 50% 48%,
-    transparent 40%,
-    rgb(20 24 30 / 0.35) 100%
+    ellipse 90% 75% at 50% 50%,
+    transparent 35%,
+    rgb(20 24 30 / 0.28) 72%,
+    rgb(20 24 30 / 0.45) 100%
   );
 }
 
@@ -167,10 +170,11 @@ body {
     background: linear-gradient(
       180deg,
       transparent 0%,
-      rgba(28, 33, 40, 0.28) 45%,
-      rgba(28, 33, 40, 0.28) 55%,
-      rgba(28, 33, 40, 0.5) 80%,
-      rgba(28, 33, 40, 0.88) 100%
+      rgba(28, 33, 40, 0.08) 38%,
+      rgba(28, 33, 40, 0.18) 52%,
+      rgba(28, 33, 40, 0.38) 68%,
+      rgba(28, 33, 40, 0.62) 84%,
+      var(--surface) 100%
     );
   }
 }
@@ -203,14 +207,212 @@ body {
   background:
     radial-gradient(
       ellipse 70% 50% at 15% 20%,
-      rgb(200 146 42 / 0.06) 0%,
+      rgb(200 146 42 / 0.025) 0%,
       transparent 55%
     ),
     radial-gradient(
       ellipse 60% 45% at 85% 75%,
-      rgb(56 189 248 / 0.04) 0%,
+      rgb(56 189 248 / 0.018) 0%,
       transparent 50%
     );
+}
+
+/* Logistics backdrop — shared layers (subtle / dark) */
+.logistics-bg-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.018) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.7;
+}
+
+.logistics-bg-grid-fine {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.014) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.014) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.65;
+}
+
+.logistics-bg-grain {
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+.logistics-bg-glow-origin {
+  background: radial-gradient(
+    ellipse 50% 40% at 12% 35%,
+    rgb(219 170 71 / 0.035) 0%,
+    transparent 60%
+  );
+}
+
+.logistics-bg-glow-destination {
+  background: radial-gradient(
+    ellipse 45% 35% at 88% 65%,
+    rgb(56 189 248 / 0.025) 0%,
+    transparent 55%
+  );
+}
+
+.logistics-bg-glows-animated {
+  animation: logistics-glow-shift 30s ease-in-out infinite alternate;
+}
+
+@keyframes logistics-glow-shift {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logistics-bg-glows-animated {
+    animation: none;
+  }
+}
+
+.logistics-bg-routes {
+  background-image: url("/patterns/logistics-routes.svg");
+  background-repeat: no-repeat;
+  background-position: center 40%;
+  background-size: min(120%, 1400px) auto;
+  opacity: 0.025;
+}
+
+.logistics-bg-roadmap {
+  opacity: 0.55;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(219 170 71 / 0.018) 0%,
+      transparent 18%,
+      transparent 82%,
+      rgb(56 189 248 / 0.012) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 47px,
+      rgb(255 255 255 / 0.012) 47px,
+      rgb(255 255 255 / 0.012) 48px
+    );
+  mask-image: linear-gradient(
+    90deg,
+    black 0%,
+    transparent 22%,
+    transparent 78%,
+    black 100%
+  );
+}
+
+.logistics-bg-case-studies {
+  background-image: radial-gradient(
+    circle at center,
+    rgb(255 255 255 / 0.022) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  opacity: 0.45;
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 45%,
+    black 15%,
+    transparent 70%
+  );
+}
+
+.section-edge-fade-top {
+  background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
+}
+
+.section-edge-fade-bottom {
+  background: linear-gradient(0deg, var(--surface) 0%, transparent 100%);
+}
+
+.services-media-card {
+  min-height: 28rem;
+}
+
+@media (min-width: 1024px) {
+  .services-media-card {
+    min-height: 32rem;
+  }
+}
+
+/* Keep all service phase panels in layout for equal height */
+.services-phase-panels {
+  display: grid;
+}
+
+.services-phase-panels > [data-slot="tabs-content"] {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.services-phase-panels > [data-slot="tabs-content"][hidden] {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.services-phase-descriptions {
+  display: grid;
+  min-height: 2.75rem;
+}
+
+.services-phase-descriptions > p {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.logistics-bg-footer {
+  background: linear-gradient(
+    180deg,
+    var(--surface) 0%,
+    var(--surface-deep) 100%
+  );
+}
+
+.logistics-bg-footer .logistics-bg-grid {
+  opacity: 0.35;
+}
+
+.logistics-bg-form-page {
+  opacity: 0.7;
+  background:
+    radial-gradient(
+      ellipse 55% 50% at 50% 42%,
+      transparent 35%,
+      rgb(20 24 30 / 0.4) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(219 170 71 / 0.012) 0%,
+      transparent 35%,
+      transparent 65%,
+      rgb(56 189 248 / 0.01) 100%
+    );
+}
+
+.logistics-bg-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.logistics-bg-fixed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.12);
+  pointer-events: none;
 }
 
 .dark {

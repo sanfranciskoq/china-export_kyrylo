@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft, Mail, Phone } from "lucide-react";
+import { FormPageShell } from "@/components/layout/FormPageShell";
 
 export default function KontaktPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <FormPageShell>
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <Link
         href="/"
         className="mb-8 inline-flex items-center gap-2 text-sm text-white/50 hover:text-white"
@@ -109,6 +111,7 @@ export default function KontaktPage() {
           </span>
         </div>
       </div>
-    </div>
+      </div>
+    </FormPageShell>
   );
 }

@@ -9,6 +9,8 @@ import {
   getCaseStudiesByCategory,
   type CaseStudyCategoryId,
 } from "@/content/case-studies";
+import { LogisticsBackdrop } from "@/components/backgrounds/LogisticsBackdrop";
+import { SectionEdgeFade } from "@/components/backgrounds/SectionEdgeFade";
 import { CaseStudyFeatured } from "@/components/case-studies/CaseStudyFeatured";
 import { CaseStudyListItem } from "@/components/case-studies/CaseStudyListItem";
 import { CaseStudyDetailModal } from "@/components/case-studies/CaseStudyDetailModal";
@@ -69,10 +71,12 @@ export function CaseStudiesSection() {
   return (
     <section
       id="realizacje"
-      className="bg-navy py-20 sm:py-28"
+      className="relative overflow-hidden py-20 sm:py-28"
       aria-labelledby="case-studies-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <LogisticsBackdrop variant="caseStudies" />
+      <SectionEdgeFade top />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-3xl"
           initial="hidden"

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
+import { FormPageShell } from "@/components/layout/FormPageShell";
 
 export default function KonsultacjaPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <FormPageShell>
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <Link
         href="/"
         className="mb-8 inline-flex items-center gap-2 text-sm text-white/50 hover:text-white"
@@ -92,6 +94,7 @@ export default function KonsultacjaPage() {
           Integracja z Calendly może zostać dodana później.
         </p>
       </div>
-    </div>
+      </div>
+    </FormPageShell>
   );
 }

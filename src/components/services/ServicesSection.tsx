@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { SectionEdgeFade } from "@/components/backgrounds/SectionEdgeFade";
 import { ServiceLeadModal } from "@/components/services/ServiceLeadModal";
 import { ServicesBackground } from "@/components/services/ServicesBackground";
 import { ServicesPhaseTabs } from "@/components/services/ServicesPhaseTabs";
@@ -23,39 +24,45 @@ export function ServicesSection() {
       className="relative overflow-hidden py-20 sm:py-28"
       aria-labelledby="services-heading"
     >
-      <ServicesBackground />
-
-      <div
-        className="services-grid-bg pointer-events-none absolute inset-0 z-[1]"
-        aria-hidden
-      />
+      <SectionEdgeFade top bottom />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="relative max-w-3xl rounded-2xl bg-black/25 px-5 py-5 ring-1 ring-white/5 backdrop-blur-[2px] sm:px-6 sm:py-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          variants={fadeUp}
-          transition={headerTransition}
-        >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
-            Usługi modułowe
-          </p>
-          <h2
-            id="services-heading"
-            className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
-          >
-            Każdy etap — jako osobna usługa
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
-            Każdy etap w mapie współpracy działa też jako samodzielny moduł.
-            Kupujesz dokładnie to, czego potrzebujesz — bez obowiązku wykupu
-            pełnego pakietu end-to-end.
-          </p>
-        </motion.div>
+        <div className="services-media-card relative overflow-hidden rounded-3xl border border-white/10">
+          <ServicesBackground />
 
-        <ServicesPhaseTabs onRequestHelp={handleRequestHelp} />
+          <div
+            className="services-grid-bg pointer-events-none absolute inset-0 z-[1]"
+            aria-hidden
+          />
+
+          <div className="relative z-10 p-8 sm:p-12 lg:p-16">
+            <motion.div
+              className="max-w-3xl"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              variants={fadeUp}
+              transition={headerTransition}
+            >
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
+                Usługi modułowe
+              </p>
+              <h2
+                id="services-heading"
+                className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
+              >
+                Każdy etap — jako osobna usługa
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
+                Każdy etap w mapie współpracy działa też jako samodzielny moduł.
+                Kupujesz dokładnie to, czego potrzebujesz — bez obowiązku wykupu
+                pełnego pakietu end-to-end.
+              </p>
+            </motion.div>
+
+            <ServicesPhaseTabs onRequestHelp={handleRequestHelp} />
+          </div>
+        </div>
       </div>
 
       <ServiceLeadModal

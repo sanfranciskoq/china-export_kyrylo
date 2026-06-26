@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  getPhaseById,
   getServicesByPhase,
   servicePhases,
   type ServicePhaseId,
@@ -19,9 +18,7 @@ type ServicesPhaseTabsProps = {
 
 export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
   const [activePhase, setActivePhase] = useState<ServicePhaseId>("pre-production");
-  const { fadeUp, staggerContainer, itemTransition, prefersReducedMotion } =
-    useMotionConfig();
-  const currentPhase = getPhaseById(activePhase);
+  const { fadeUp, staggerContainer, itemTransition } = useMotionConfig();
 
   return (
     <div className="mt-12">
@@ -55,41 +52,37 @@ export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
             </TabsList>
           </div>
 
-          <motion.p
-            key={activePhase}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: prefersReducedMotion ? 0.1 : 0.2 }}
-            className="mt-4 text-sm text-white/80"
-          >
-            {currentPhase?.description}
-          </motion.p>
+          <div className="services-phase-descriptions mt-4">
+            {servicePhases.map((phase) => (
+              <p
+                key={phase.id}
+                className={cn(
+                  "text-sm text-white/80 transition-opacity duration-200",
+                  activePhase === phase.id ? "opacity-100" : "opacity-0",
+                )}
+              >
+                {phase.description}
+              </p>
+            ))}
+          </div>
         </div>
 
-        {servicePhases.map((phase) => (
-          <TabsContent
-            key={phase.id}
-            value={phase.id}
-            className="mt-6 outline-none"
-          >
-            <motion.div
-              initial={{
-                opacity: 0,
-                ...(prefersReducedMotion ? {} : { y: 12 }),
-              }}
-              animate={{
-                opacity: 1,
-                ...(prefersReducedMotion ? {} : { y: 0 }),
-              }}
-              transition={{
-                duration: prefersReducedMotion ? 0.15 : 0.35,
-              }}
+        <div className="services-phase-panels mt-6">
+          {servicePhases.map((phase) => (
+            <TabsContent
+              key={phase.id}
+              value={phase.id}
+              forceMount
+              className={cn(
+                "outline-none transition-opacity duration-200",
+                "data-[state=inactive]:z-0 data-[state=active]:z-10",
+              )}
             >
               <motion.div
                 className={cn(phase.gridClassName, phase.panelClassName)}
                 variants={staggerContainer}
                 initial="hidden"
-                animate="visible"
+                animate={activePhase === phase.id ? "visible" : "hidden"}
               >
                 {getServicesByPhase(phase.id).map((service) => (
                   <ServiceCard
@@ -101,9 +94,9 @@ export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
                   />
                 ))}
               </motion.div>
-            </motion.div>
-          </TabsContent>
-        ))}
+            </TabsContent>
+          ))}
+        </div>
       </Tabs>
     </div>
   );

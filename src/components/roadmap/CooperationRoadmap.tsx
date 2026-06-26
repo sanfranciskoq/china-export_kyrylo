@@ -1,5 +1,7 @@
 "use client";
 
+import { LogisticsBackdrop } from "@/components/backgrounds/LogisticsBackdrop";
+import { SectionEdgeFade } from "@/components/backgrounds/SectionEdgeFade";
 import { roadmapStages } from "@/content/roadmap.stages";
 import { RoadmapBackground } from "@/components/roadmap/RoadmapBackground";
 import { RoadmapStagePanel } from "@/components/roadmap/RoadmapStagePanel";
@@ -23,10 +25,12 @@ export function CooperationRoadmap() {
   return (
     <section
       id="roadmap"
-      className="relative overflow-hidden bg-navy py-20 sm:py-28"
+      className="relative overflow-hidden py-20 sm:py-28"
       aria-labelledby="roadmap-heading"
     >
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <LogisticsBackdrop variant="roadmap" />
+      <SectionEdgeFade top />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl border border-white/10">
           <RoadmapBackground stage={activeStage} />
 

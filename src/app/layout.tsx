@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { LogisticsBackdrop } from "@/components/backgrounds/LogisticsBackdrop";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
@@ -26,9 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={cn("h-full", "antialiased", jakarta.variable, "font-sans", inter.variable)}>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="relative min-h-full flex flex-col bg-background text-foreground">
+        <LogisticsBackdrop variant="site" />
         <Header />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="relative z-10 flex-1 pt-16">{children}</main>
         <Footer />
       </body>
     </html>
