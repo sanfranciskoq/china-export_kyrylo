@@ -5,26 +5,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --navy: #0a1628;
-  --navy-light: #0f2744;
+  /* Hero-derived site palette */
+  --surface: #1c2128;
+  --surface-elevated: #232830;
+  --surface-deep: #14181e;
+
+  --navy: var(--surface);
+  --navy-light: var(--surface-elevated);
   --accent: oklch(0.97 0 0);
   --accent-light: #dbaa47;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --background: var(--surface);
+  --foreground: #f3f4f6;
+  --card: var(--surface-elevated);
+  --card-foreground: #f3f4f6;
+  --popover: var(--surface-elevated);
+  --popover-foreground: #f3f4f6;
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: #f3f4f6;
+  --muted: #2a3039;
+  --muted-foreground: #9ca3af;
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -47,6 +52,9 @@
   --color-foreground: var(--foreground);
   --color-navy: var(--navy);
   --color-navy-light: var(--navy-light);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-deep: var(--surface-deep);
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --font-sans: var(--font-sans);
@@ -100,87 +108,95 @@ body {
   html {
     scroll-behavior: auto;
   }
-
-  .hero-float,
-  .hero-route,
-  .hero-node,
-  .hero-gradient {
-    animation: none !important;
-  }
 }
 
-/* Hero animated background */
-.hero-gradient {
+/* Hero background — full-width map via background-size */
+.hero-map-bg {
+  background-color: var(--surface-elevated);
+  background-image: url("/hero/world-map-outline.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% auto;
+  opacity: 0.9;
+  filter: brightness(1.75) contrast(1.1);
+}
+
+.hero-header-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(28, 33, 40, 0.5) 0%,
+    rgba(28, 33, 40, 0.5) 28%,
+    rgba(28, 33, 40, 0.25) 42%,
+    transparent 58%
+  );
+  pointer-events: none;
+}
+
+.hero-map-overlay {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(28, 33, 40, 0.08) 42%,
+    rgba(28, 33, 40, 0.08) 58%,
+    rgba(28, 33, 40, 0.45) 82%,
+    rgba(28, 33, 40, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-map-vignette {
   background: radial-gradient(
-      ellipse 80% 60% at 20% 50%,
-      rgba(200, 146, 42, 0.15) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 60% 50% at 80% 30%,
-      rgba(56, 189, 248, 0.1) 0%,
-      transparent 50%
+    ellipse 90% 70% at 50% 48%,
+    transparent 40%,
+    rgb(20 24 30 / 0.35) 100%
+  );
+}
+
+@media (max-width: 640px) {
+  .hero-header-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(28, 33, 40, 0.5) 0%,
+      rgba(28, 33, 40, 0.5) 34%,
+      rgba(28, 33, 40, 0.3) 48%,
+      transparent 64%
     );
-  animation: heroPulse 8s ease-in-out infinite alternate;
-}
-
-@keyframes heroPulse {
-  from {
-    opacity: 0.6;
   }
-  to {
-    opacity: 1;
-  }
-}
 
-.hero-route {
-  animation: routeDash 20s linear infinite;
-}
-
-@keyframes routeDash {
-  to {
-    stroke-dashoffset: -200;
-  }
-}
-
-.hero-node {
-  animation: nodePulse 3s ease-in-out infinite;
-}
-
-@keyframes nodePulse {
-  0%,
-  100% {
-    opacity: 0.4;
-    r: 5;
-  }
-  50% {
-    opacity: 1;
-    r: 8;
-  }
-}
-
-.hero-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.hero-float-1 { animation-delay: 0s; }
-.hero-float-2 { animation-delay: 1.2s; }
-.hero-float-3 { animation-delay: 2.4s; }
-.hero-float-4 { animation-delay: 3.6s; }
-.hero-float-5 { animation-delay: 4.8s; }
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
+  .hero-map-overlay {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(28, 33, 40, 0.28) 45%,
+      rgba(28, 33, 40, 0.28) 55%,
+      rgba(28, 33, 40, 0.5) 80%,
+      rgba(28, 33, 40, 0.88) 100%
+    );
   }
 }
 
 .track-text {
   text-shadow: 0 1px 4px rgb(0 0 0 / 0.85);
+}
+
+.hero-flow-overlay {
+  isolation: isolate;
+}
+
+.hero-flow-map-canvas {
+  max-width: 100%;
+}
+
+.hero-flow-band {
+  filter: drop-shadow(0 0 3px rgb(200 146 42 / 0.15));
+}
+
+.hero-flow-band-rail {
+  filter: drop-shadow(0 0 3px rgb(74 222 128 / 0.2));
+}
+
+.hero-flow-tooltip {
+  transform: translateY(-100%);
 }
 
 .services-grid-bg {
@@ -198,20 +214,20 @@ body {
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
+  --background: var(--surface);
+  --foreground: #f3f4f6;
+  --card: var(--surface-elevated);
+  --card-foreground: #f3f4f6;
+  --popover: var(--surface-elevated);
+  --popover-foreground: #f3f4f6;
   --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --primary-foreground: var(--surface);
+  --secondary: var(--surface-elevated);
+  --secondary-foreground: #f3f4f6;
+  --muted: #2a3039;
+  --muted-foreground: #9ca3af;
+  --accent: #2a3039;
+  --accent-foreground: #f3f4f6;
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);

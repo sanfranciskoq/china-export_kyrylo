@@ -74,7 +74,7 @@ export function RoadmapTrack({
                 type="button"
                 aria-label={`Etap ${i + 1}: ${stage.title}`}
                 aria-current={isActive ? "step" : undefined}
-                className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
                 style={{ left: position }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -89,7 +89,7 @@ export function RoadmapTrack({
                       ? "scale-150 border-accent-light bg-accent-light shadow-lg shadow-black/40"
                       : isPast
                         ? "border-accent-light/70 bg-accent-light/70"
-                        : "border-white/50 bg-slate-900/80",
+                        : "border-white/50 bg-navy-light/80",
                   )}
                 />
               </button>

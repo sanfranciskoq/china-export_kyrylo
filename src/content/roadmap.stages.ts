@@ -21,9 +21,9 @@ export const roadmapStages: RoadmapStage[] = [
       "Omawiamy zakres importu, Incoterms, harmonogram i budżet. Otrzymujesz przejrzystą wycenę całego procesu lub wybranego etapu.",
     cta: { label: "Wyślij brief", href: "/kontakt" },
     theme: {
-      bg: "#0f2744",
+      bg: "#232830",
       accent: "#38bdf8",
-      gradient: "from-sky-950 via-slate-900 to-slate-950",
+      gradient: "from-sky-950 via-surface-deep to-surface",
     },
     icon: "clipboard",
     image: "/roadmap/brief.jpg",
@@ -38,7 +38,7 @@ export const roadmapStages: RoadmapStage[] = [
     theme: {
       bg: "#1a2e1a",
       accent: "#4ade80",
-      gradient: "from-emerald-950 via-slate-900 to-slate-950",
+      gradient: "from-emerald-950 via-surface-deep to-surface",
     },
     icon: "search",
     image: "/roadmap/sourcing.jpg",
@@ -53,7 +53,7 @@ export const roadmapStages: RoadmapStage[] = [
     theme: {
       bg: "#2a1f0a",
       accent: "#fbbf24",
-      gradient: "from-amber-950 via-slate-900 to-slate-950",
+      gradient: "from-amber-950 via-surface-deep to-surface",
     },
     icon: "factory",
     image: "/roadmap/audit.jpg",
@@ -68,7 +68,7 @@ export const roadmapStages: RoadmapStage[] = [
     theme: {
       bg: "#1e1b4b",
       accent: "#a78bfa",
-      gradient: "from-violet-950 via-slate-900 to-slate-950",
+      gradient: "from-violet-950 via-surface-deep to-surface",
     },
     icon: "check",
     image: "/roadmap/production.jpg",
@@ -83,7 +83,7 @@ export const roadmapStages: RoadmapStage[] = [
     theme: {
       bg: "#0c2340",
       accent: "#60a5fa",
-      gradient: "from-blue-950 via-slate-900 to-slate-950",
+      gradient: "from-blue-950 via-surface-deep to-surface",
     },
     icon: "document",
     image: "/roadmap/export.jpg",
@@ -98,7 +98,7 @@ export const roadmapStages: RoadmapStage[] = [
     theme: {
       bg: "#0a2540",
       accent: "#22d3ee",
-      gradient: "from-cyan-950 via-slate-900 to-slate-950",
+      gradient: "from-cyan-950 via-surface-deep to-surface",
     },
     icon: "ship",
     image: "/roadmap/freight.jpg",
@@ -113,7 +113,7 @@ export const roadmapStages: RoadmapStage[] = [
     theme: {
       bg: "#1a1033",
       accent: "#f472b6",
-      gradient: "from-rose-950 via-slate-900 to-slate-950",
+      gradient: "from-rose-950 via-surface-deep to-surface",
     },
     icon: "home",
     image: "/roadmap/delivery.jpg",

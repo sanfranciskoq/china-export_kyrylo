@@ -38,10 +38,10 @@ function HeroButton({
   );
 }
 
-export function HeroCTAs() {
+export function HeroCTAs({ className }: { className?: string }) {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+    <div className={cn("mx-auto flex max-w-3xl flex-col items-center gap-4", className)}>
+      <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
         <HeroButton variant="primary" href="/kontakt" className="sm:min-w-[180px]">
           Wyślij zapytanie
         </HeroButton>
@@ -56,7 +56,10 @@ export function HeroCTAs() {
           Umów konsultację
         </HeroButton>
       </div>
-      <HeroTooltip text="Powierz nam cały proces albo wybierz jeden etap." />
+      <HeroTooltip
+        text="Powierz nam cały proces albo wybierz jeden etap."
+        className="justify-center"
+      />
     </div>
   );
 }

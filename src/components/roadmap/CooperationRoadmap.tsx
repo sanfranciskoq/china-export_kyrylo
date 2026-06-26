@@ -23,7 +23,7 @@ export function CooperationRoadmap() {
   return (
     <section
       id="roadmap"
-      className="relative overflow-hidden bg-slate-950 py-20 sm:py-28"
+      className="relative overflow-hidden bg-navy py-20 sm:py-28"
       aria-labelledby="roadmap-heading"
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
