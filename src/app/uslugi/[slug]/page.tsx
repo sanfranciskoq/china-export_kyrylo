@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
+import { FeaturedStepsPanel } from "@/components/services/FeaturedStepsPanel";
 import { SourcingProcessCarousel } from "@/components/services/SourcingProcessCarousel";
 import {
   getPageContentByServiceSlug,
@@ -51,7 +52,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
         { label: service.title },
       ]}
       beforeSections={
-        content.processCarousel ? (
+        content.featuredSteps ? (
+          <FeaturedStepsPanel {...content.featuredSteps} />
+        ) : content.processCarousel ? (
           <SourcingProcessCarousel
             {...content.processCarousel}
             asideSections={content.sections}
