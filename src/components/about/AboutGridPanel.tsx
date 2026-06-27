@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import type { AboutGridPanel as AboutGridPanelData } from "@/content/about-grid";
 import { cn } from "@/lib/utils";
 
@@ -59,12 +58,6 @@ export function AboutGridPanel({
         <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-200/90 sm:text-base">
           {panel.description}
         </p>
-        <Link
-          href={panel.cta.href}
-          className="mt-6 inline-flex items-center justify-center rounded-lg border border-accent-light/20 bg-accent-light px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-light/25 transition-colors hover:bg-[#dbaa47] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
-        >
-          {panel.cta.label}
-        </Link>
       </div>
     </article>
   );

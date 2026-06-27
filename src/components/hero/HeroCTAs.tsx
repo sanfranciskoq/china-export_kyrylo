@@ -52,7 +52,7 @@ export function HeroCTAs({ className }: { className?: string }) {
         >
           Oblicz transport
         </HeroButton>
-        <HeroButton variant="tertiary" href="/konsultacja">
+        <HeroButton variant="primary" href="/konsultacja" className="sm:min-w-[180px]">
           Umów konsultację
         </HeroButton>
       </div>

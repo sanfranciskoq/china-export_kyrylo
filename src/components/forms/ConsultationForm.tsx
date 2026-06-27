@@ -82,7 +82,7 @@ export function ConsultationForm() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-accent px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-accent-light sm:w-auto"
+            className="w-full rounded-lg border border-accent-light/20 bg-accent-light px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-light/25 transition-colors hover:bg-[#dbaa47] sm:w-auto"
           >
             Umów konsultację
           </button>
