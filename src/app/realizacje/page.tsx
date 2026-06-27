@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { CaseStudiesSection } from "@/components/case-studies/CaseStudiesSection";
-import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
+import { RealizacjePageSection } from "@/components/case-studies/RealizacjePageSection";
+import { DedicatedPageShell } from "@/components/pages/DedicatedPageShell";
+import { PageCtaBand } from "@/components/pages/PageCtaBand";
 import { getRequiredPageContent } from "@/content/pages";
 
 const content = getRequiredPageContent("realizacje");
@@ -12,13 +13,21 @@ export const metadata: Metadata = {
 
 export default function RealizacjePage() {
   return (
-    <DedicatedMarketingPage
-      content={content}
+    <DedicatedPageShell
       breadcrumbs={[
         { label: "Strona główna", href: "/" },
         { label: "Realizacje" },
       ]}
-      widget={<CaseStudiesSection embedded />}
-    />
+    >
+      <RealizacjePageSection
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        lead={content.hero.lead}
+      />
+      <PageCtaBand
+        primary={content.cta.primary}
+        secondary={content.cta.secondary}
+      />
+    </DedicatedPageShell>
   );
 }
