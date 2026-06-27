@@ -2,7 +2,7 @@ import { HeroSection } from "@/components/hero/HeroSection";
 import { CooperationRoadmap } from "@/components/roadmap/CooperationRoadmap";
 import { StatsBanner } from "@/components/stats/StatsBanner";
 import { ServicesSection } from "@/components/services/ServicesSection";
-import { CaseStudiesSection } from "@/components/case-studies/CaseStudiesSection";
+import { RealizacjeTeaserSection } from "@/components/case-studies/RealizacjeTeaserSection";
 import { AboutGridSection } from "@/components/about/AboutGridSection";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       <CooperationRoadmap />
       <StatsBanner />
       <ServicesSection />
-      <CaseStudiesSection />
+      <RealizacjeTeaserSection />
       <AboutGridSection />
     </>
   );
