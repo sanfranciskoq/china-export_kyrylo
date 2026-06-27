@@ -44,7 +44,7 @@ export const realizacjeTeaser: RealizacjeTeaserContent = {
     "Opakowania i surowce — folie, tworzywa, konsolidacja dostaw",
     "Projekty niestandardowe — komponenty, części zamienne, OEM",
   ],
-  image: "/image/cargo_conteiners.jpg",
+  image: "/image/plane_shipment.jpg",
   imageAlt: "Kontenery cargo — logistyka i realizacje importu z Chin",
   cta: {
     label: "Zobacz case studies",
