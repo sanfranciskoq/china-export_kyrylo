@@ -8,29 +8,59 @@ import {
   type ServicePhaseId,
 } from "@/content/services";
 import { ServiceCard } from "@/components/services/ServiceCard";
+import type { ServiceCardComponentProps } from "@/components/services/ServiceCompactTile";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useMotionConfig } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
+const mosaicGridClassName =
+  "grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4";
+
 type ServicesPhaseTabsProps = {
   onRequestHelp: (serviceId: string) => void;
+  variant?: "landing" | "dedicated";
+  layout?: "default" | "mosaic";
+  CardComponent?: React.ComponentType<ServiceCardComponentProps>;
+  expandedTileId?: string | null;
+  onExpandTile?: (id: string | null) => void;
 };
 
-export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
+export function ServicesPhaseTabs({
+  onRequestHelp,
+  variant = "landing",
+  layout = "default",
+  CardComponent = ServiceCard,
+  expandedTileId,
+  onExpandTile,
+}: ServicesPhaseTabsProps) {
   const [activePhase, setActivePhase] = useState<ServicePhaseId>("pre-production");
   const { fadeUp, staggerContainer, itemTransition } = useMotionConfig();
+  const isDedicated = variant === "dedicated";
+  const isMosaic = isDedicated && layout === "mosaic";
+
+  function handlePhaseChange(value: string) {
+    setActivePhase(value as ServicePhaseId);
+    onExpandTile?.(null);
+  }
 
   return (
-    <div className="mt-12">
-      <Tabs
-        value={activePhase}
-        onValueChange={(value) => setActivePhase(value as ServicePhaseId)}
-      >
-        <div className="rounded-2xl bg-black/25 px-4 py-4 ring-1 ring-white/5 backdrop-blur-[2px] sm:px-5 sm:py-5">
+    <div className={cn(isDedicated ? "" : "mt-12")}>
+      <Tabs value={activePhase} onValueChange={handlePhaseChange}>
+        <div
+          className={cn(
+            "rounded-2xl px-4 py-4 sm:px-5 sm:py-5",
+            isDedicated
+              ? "border border-white/10 bg-navy-light/50"
+              : "bg-black/25 ring-1 ring-white/5 backdrop-blur-[2px]",
+          )}
+        >
           <div className="-mx-1 overflow-x-auto px-1 pb-1">
             <TabsList
               aria-label="Fazy importu"
-              className="h-auto w-max min-w-full justify-start gap-1 rounded-xl border border-white/10 bg-white/5 p-1 backdrop-blur-sm sm:min-w-0 sm:w-full"
+              className={cn(
+                "h-auto w-max min-w-full justify-start gap-1 rounded-xl border border-white/10 p-1 sm:min-w-0 sm:w-full",
+                isDedicated ? "bg-navy/50" : "bg-white/5 backdrop-blur-sm",
+              )}
             >
               {servicePhases.map((phase) => {
                 const Icon = phase.icon;
@@ -52,13 +82,16 @@ export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
             </TabsList>
           </div>
 
-          <div className="services-phase-descriptions mt-4">
+          <div className="services-phase-descriptions relative mt-4 min-h-[1.25rem]">
             {servicePhases.map((phase) => (
               <p
                 key={phase.id}
                 className={cn(
-                  "text-sm text-white/80 transition-opacity duration-200",
-                  activePhase === phase.id ? "opacity-100" : "opacity-0",
+                  "text-sm transition-opacity duration-200",
+                  isDedicated ? "text-white/65" : "text-white/80",
+                  activePhase === phase.id
+                    ? "opacity-100"
+                    : "pointer-events-none absolute inset-0 opacity-0",
                 )}
               >
                 {phase.description}
@@ -67,7 +100,18 @@ export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
           </div>
         </div>
 
-        <div className="services-phase-panels mt-6">
+        <div
+          className={cn(
+            "services-phase-panels mt-6",
+            isMosaic &&
+              "rounded-3xl border border-white/10 bg-[radial-gradient(ellipse_at_top_left,rgba(219,170,71,0.08),transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.04),transparent_55%)] bg-navy-light/30 p-4 sm:p-6",
+          )}
+          onClick={(e) => {
+            if (isMosaic && e.target === e.currentTarget) {
+              onExpandTile?.(null);
+            }
+          }}
+        >
           {servicePhases.map((phase) => (
             <TabsContent
               key={phase.id}
@@ -79,18 +123,24 @@ export function ServicesPhaseTabs({ onRequestHelp }: ServicesPhaseTabsProps) {
               )}
             >
               <motion.div
-                className={cn(phase.gridClassName, phase.panelClassName)}
+                className={cn(
+                  isMosaic
+                    ? mosaicGridClassName
+                    : cn(phase.gridClassName, phase.panelClassName),
+                )}
                 variants={staggerContainer}
                 initial="hidden"
                 animate={activePhase === phase.id ? "visible" : "hidden"}
               >
                 {getServicesByPhase(phase.id).map((service) => (
-                  <ServiceCard
+                  <CardComponent
                     key={service.id}
                     service={service}
                     onRequestHelp={onRequestHelp}
                     variants={fadeUp}
                     transition={itemTransition}
+                    expandedTileId={expandedTileId}
+                    onExpandTile={onExpandTile}
                   />
                 ))}
               </motion.div>

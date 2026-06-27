@@ -17,6 +17,19 @@ export const aboutGridHero: AboutGridPanel = {
   imageAlt: "Biuro i zespół China Export w Chinach",
 };
 
+export function getAboutPanelById(id: string): AboutGridPanel | undefined {
+  if (aboutGridHero.id === id) return aboutGridHero;
+  return aboutGridRow.find((panel) => panel.id === id);
+}
+
+export function getRequiredAboutPanel(id: string): AboutGridPanel {
+  const panel = getAboutPanelById(id);
+  if (!panel) {
+    throw new Error(`Missing about panel: ${id}`);
+  }
+  return panel;
+}
+
 export const aboutGridRow: AboutGridPanel[] = [
   {
     id: "quality-control",

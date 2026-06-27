@@ -4,14 +4,15 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Globe2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { href: "/#roadmap", label: "Proces" },
-  { href: "/#uslugi", label: "Usługi" },
-  { href: "/#realizacje", label: "Realizacje" },
-  { href: "/kalkulator", label: "Kalkulator" },
-  { href: "/kontakt", label: "Kontakt" },
-];
+import { ctaLink, navGroups } from "@/config/navigation";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -28,16 +29,35 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm text-white/70 transition-colors hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-4 md:flex">
+          <NavigationMenu viewport={false}>
+            <NavigationMenuList className="gap-1">
+              {navGroups.map((group) => (
+                <NavigationMenuItem key={group.label}>
+                  <NavigationMenuTrigger className="h-auto bg-transparent px-3 py-2 text-sm font-normal text-white/70 hover:bg-white/5 hover:text-white data-open:bg-white/5 data-open:text-white">
+                    {group.label}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="min-w-[240px] overflow-hidden rounded-lg border border-white/10 bg-navy/95 p-1 shadow-xl backdrop-blur-md">
+                    <ul className="flex flex-col">
+                      {group.items.map((item) => (
+                        <li key={`${group.label}-${item.label}`}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              href={item.href}
+                              className="block rounded-md px-3 py-2 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                            >
+                              {item.label}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+
           <button
             type="button"
             aria-label="Język: Polski"
@@ -46,11 +66,12 @@ export function Header() {
             <Globe2 className="h-4 w-4" />
             PL
           </button>
+
           <Link
-            href="/kontakt"
+            href={ctaLink.href}
             className="rounded-lg border border-accent-light/20 bg-accent-light px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-accent-light/25 transition-colors hover:bg-[#dbaa47]"
           >
-            Wyślij zapytanie
+            {ctaLink.label}
           </Link>
         </nav>
 
@@ -67,26 +88,34 @@ export function Header() {
       <div
         className={cn(
           "overflow-hidden border-t border-white/10 bg-navy/95 transition-all duration-300 md:hidden",
-          open ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
+          open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0",
         )}
       >
-        <nav className="flex flex-col gap-1 px-4 py-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="rounded-lg px-3 py-2.5 text-sm text-white/80 hover:bg-white/5"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
+        <nav className="flex flex-col gap-4 px-4 py-4">
+          {navGroups.map((group) => (
+            <div key={group.label}>
+              <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-widest text-white/40">
+                {group.label}
+              </p>
+              {group.items.map((item) => (
+                <Link
+                  key={`${group.label}-${item.label}`}
+                  href={item.href}
+                  className="block rounded-lg px-3 py-2.5 text-sm text-white/80 hover:bg-white/5"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           ))}
+
           <Link
-            href="/kontakt"
+            href={ctaLink.href}
             className="mt-2 rounded-lg border border-accent-light/20 bg-accent-light px-3 py-2.5 text-center text-sm font-semibold text-white shadow-lg shadow-accent-light/25 transition-colors hover:bg-[#dbaa47]"
             onClick={() => setOpen(false)}
           >
-            Wyślij zapytanie
+            {ctaLink.label}
           </Link>
         </nav>
       </div>

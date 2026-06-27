@@ -21,6 +21,7 @@ export function AboutGridPanel({
 
   return (
     <article
+      id={panel.id}
       className={cn(
         "relative overflow-hidden bg-navy",
         variant === "hero"
@@ -49,13 +50,13 @@ export function AboutGridPanel({
         />
       )}
 
-      <div className="absolute inset-0 bg-black/50" aria-hidden />
+      <div className="about-grid-scrim absolute inset-0" aria-hidden />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center sm:px-8">
-        <h3 className="max-w-lg text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center sm:px-8">
+        <h3 className="track-text max-w-lg text-xl font-bold text-gray-100 sm:text-2xl lg:text-3xl">
           {panel.title}
         </h3>
-        <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70 sm:text-base">
+        <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-200/90 sm:text-base">
           {panel.description}
         </p>
         <Link

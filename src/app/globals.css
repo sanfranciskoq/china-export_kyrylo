@@ -335,6 +335,11 @@ body {
   background: linear-gradient(0deg, var(--surface) 0%, transparent 100%);
 }
 
+.about-grid-scrim {
+  background: rgba(28, 33, 40, 0.5);
+  pointer-events: none;
+}
+
 .services-media-card {
   min-height: 28rem;
 }

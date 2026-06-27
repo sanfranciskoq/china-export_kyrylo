@@ -30,6 +30,8 @@ export type ServiceModule = {
   phase: ServicePhaseId;
   /** Optional link to a related roadmap stage */
   roadmapStageId?: string;
+  /** URL slug for dedicated service page */
+  slug?: string;
 };
 
 export const servicePhases: ServicePhase[] = [
@@ -66,6 +68,7 @@ export const serviceModules: ServiceModule[] = [
     icon: Search,
     phase: "pre-production",
     roadmapStageId: "sourcing",
+    slug: "wyszukiwanie-dostawcow",
   },
   {
     id: "verification",
@@ -75,6 +78,7 @@ export const serviceModules: ServiceModule[] = [
     icon: ShieldCheck,
     phase: "pre-production",
     roadmapStageId: "audit",
+    slug: "audyty-fabryk",
   },
   {
     id: "qc",
@@ -84,6 +88,7 @@ export const serviceModules: ServiceModule[] = [
     icon: ClipboardCheck,
     phase: "pre-production",
     roadmapStageId: "production",
+    slug: "kontrola-jakosci",
   },
   {
     id: "oem",
@@ -118,6 +123,7 @@ export const serviceModules: ServiceModule[] = [
     icon: Ship,
     phase: "logistics",
     roadmapStageId: "freight",
+    slug: "spedycja-i-logistyka",
   },
   {
     id: "customs",
@@ -148,4 +154,14 @@ export function getServicesByPhase(phaseId: ServicePhaseId): ServiceModule[] {
 
 export function getPhaseById(phaseId: ServicePhaseId): ServicePhase | undefined {
   return servicePhases.find((p) => p.id === phaseId);
+}
+
+export function getServiceBySlug(slug: string): ServiceModule | undefined {
+  return serviceModules.find((s) => s.slug === slug);
+}
+
+export function getServiceNavSlugs(): string[] {
+  return serviceModules
+    .filter((s): s is ServiceModule & { slug: string } => Boolean(s.slug))
+    .map((s) => s.slug);
 }

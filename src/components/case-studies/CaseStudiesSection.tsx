@@ -24,7 +24,7 @@ const filters: { id: FilterId; label: string }[] = [
   ...caseStudyCategories.map((c) => ({ id: c.id, label: c.label })),
 ];
 
-export function CaseStudiesSection() {
+export function CaseStudiesSection({ embedded = false }: { embedded?: boolean }) {
   const [activeFilter, setActiveFilter] = useState<FilterId>("all");
   const [activeId, setActiveId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -70,38 +70,40 @@ export function CaseStudiesSection() {
 
   return (
     <section
-      id="realizacje"
-      className="relative overflow-hidden py-20 sm:py-28"
-      aria-labelledby="case-studies-heading"
+      id={embedded ? undefined : "realizacje"}
+      className={embedded ? "relative overflow-hidden py-8 sm:py-12" : "relative overflow-hidden py-20 sm:py-28"}
+      aria-labelledby={embedded ? undefined : "case-studies-heading"}
     >
-      <LogisticsBackdrop variant="caseStudies" />
-      <SectionEdgeFade top />
+      {!embedded && <LogisticsBackdrop variant="caseStudies" />}
+      {!embedded && <SectionEdgeFade top />}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="max-w-3xl"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          variants={fadeUp}
-          transition={headerTransition}
-        >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
-            Realizacje i branże
-          </p>
-          <h2
-            id="case-studies-heading"
-            className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
+        {!embedded && (
+          <motion.div
+            className="max-w-3xl"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={fadeUp}
+            transition={headerTransition}
           >
-            Case studies — udane importy z Chin
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
-            Wybrane projekty z różnych branż. Ze względu na poufność nie
-            publikujemy danych klientów ani brandingów — pokazujemy zakres,
-            proces i rezultaty.
-          </p>
-        </motion.div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
+              Realizacje i branże
+            </p>
+            <h2
+              id="case-studies-heading"
+              className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
+            >
+              Case studies — udane importy z Chin
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">
+              Wybrane projekty z różnych branż. Ze względu na poufność nie
+              publikujemy danych klientów ani brandingów — pokazujemy zakres,
+              proces i rezultaty.
+            </p>
+          </motion.div>
+        )}
 
-        <div className="mt-10 -mx-1 overflow-x-auto px-1 pb-1">
+        <div className={embedded ? "mt-0 -mx-1 overflow-x-auto px-1 pb-1" : "mt-10 -mx-1 overflow-x-auto px-1 pb-1"}>
           <div
             className="flex w-max min-w-full gap-2 sm:flex-wrap"
             role="tablist"

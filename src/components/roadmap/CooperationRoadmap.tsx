@@ -8,7 +8,7 @@ import { RoadmapStagePanel } from "@/components/roadmap/RoadmapStagePanel";
 import { RoadmapTrack } from "@/components/roadmap/RoadmapTrack";
 import { useRoadmapScrub } from "@/components/roadmap/useRoadmapScrub";
 
-export function CooperationRoadmap() {
+export function CooperationRoadmap({ embedded = false }: { embedded?: boolean }) {
   const {
     progress,
     activeIndex,
@@ -24,31 +24,35 @@ export function CooperationRoadmap() {
 
   return (
     <section
-      id="roadmap"
-      className="relative overflow-hidden py-20 sm:py-28"
-      aria-labelledby="roadmap-heading"
+      id={embedded ? undefined : "roadmap"}
+      className={embedded ? "relative overflow-hidden py-8 sm:py-12" : "relative overflow-hidden py-20 sm:py-28"}
+      aria-labelledby={embedded ? undefined : "roadmap-heading"}
     >
-      <LogisticsBackdrop variant="roadmap" />
-      <SectionEdgeFade top />
+      {!embedded && <LogisticsBackdrop variant="roadmap" />}
+      {!embedded && <SectionEdgeFade top />}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl border border-white/10">
           <RoadmapBackground stage={activeStage} />
 
           <div className="relative p-8 sm:p-12 lg:p-16">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
-              Mapa współpracy
-            </p>
-            <h2
-              id="roadmap-heading"
-              className="text-2xl font-bold text-white sm:text-3xl"
-            >
-              Twój import krok po kroku
-            </h2>
-            <p className="mt-2 max-w-lg text-sm text-white/70">
-              Interaktywna ścieżka — od briefu po dostawę pod Twój adres.
-            </p>
+            {!embedded && (
+              <>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-accent-light">
+                  Mapa współpracy
+                </p>
+                <h2
+                  id="roadmap-heading"
+                  className="text-2xl font-bold text-white sm:text-3xl"
+                >
+                  Twój import krok po kroku
+                </h2>
+                <p className="mt-2 max-w-lg text-sm text-white/70">
+                  Interaktywna ścieżka — od briefu po dostawę pod Twój adres.
+                </p>
+              </>
+            )}
 
-            <div className="mt-8 lg:mt-10">
+            <div className={embedded ? "mt-0" : "mt-8 lg:mt-10"}>
               <RoadmapStagePanel
                 stage={activeStage}
                 stageIndex={activeIndex}
