@@ -51,7 +51,7 @@ export const navGroups: NavGroup[] = [
   {
     label: "Narzędzia",
     items: [
-      { href: "/kalkulator", label: "Kalkulator transportu" },
+      { href: "/kalkulator", label: "Kalkulator importu" },
       { href: "/konsultacja", label: "Umów konsultację" },
       { href: "/kontakt", label: "Kontakt" },
     ],

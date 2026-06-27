@@ -3,29 +3,36 @@ import type { DedicatedPageContent } from "./types";
 export const kalkulatorPage: DedicatedPageContent = {
   id: "kalkulator",
   meta: {
-    title: "Kalkulator transportu — China Export",
+    title: "Kalkulator importu — B&BS Poland",
     description:
-      "Oszacuj koszt transportu z Chin — fracht morski i lotniczy na podstawie wagi, objętości i portu załadunku.",
+      "Orientacyjny kalkulator importu z Chin: transport, cło, VAT i koszt dostawy do Polski. Narzędzie planistyczne B&BS Poland.",
   },
   hero: {
-    eyebrow: "Narzędzia",
-    title: "Kalkulator kosztu transportu z Chin",
-    lead: "Wstępna wycena frachtu morskiego lub lotniczego — zanim wyślesz zapytanie. Moduł w przygotowaniu; poniżej opis, jakie dane będą potrzebne.",
+    eyebrow: "Narzędzia · B&BS Poland",
+    title: "Orientacyjny kalkulator importu z Chin",
+    lead: "Oszacuj pełny koszt importu — fracht, cło, VAT i obsługę celną — zanim wyślesz zapytanie. Wynik ma charakter orientacyjny i nie stanowi oferty handlowej.",
   },
   sections: [
     {
-      title: "Co kalkulator uwzględni",
-      body: "Po uruchomieniu modułu otrzymasz szacunkowy koszt transportu na podstawie parametrów ładunku i trasy. To orientacyjna wycena — dokładna kwota wymaga potwierdzenia z armatora.",
+      title: "Co uwzględnia kalkulator",
+      body: "Moduł B&BS Poland łączy szacunkowy koszt transportu z podstawową kalkulacją celną i podatkową po stronie polskiej.",
       bullets: [
-        "Waga brutto i objętość (m³) ładunku",
-        "Port załadunku (np. Shenzhen, Ningbo, Shanghai)",
-        "Port docelowy lub miasto dostawy w UE",
-        "Tryb: FCL, LCL lub lotniczy",
+        "Wartość towaru w USD, EUR lub PLN z aktualnymi kursami NBP",
+        "Tryby: FCL morski/kolejowy, LCL oraz transport lotniczy",
+        "Incoterms EXW, FOB i CIF z odpowiednią wartością celną",
+        "Cło, VAT importowy 23% oraz koszt agencji celnej",
+        "Opcjonalne ubezpieczenie ładunku (poza CIF)",
       ],
     },
     {
       title: "Czego kalkulator nie obejmuje",
-      body: "Wycena dotyczy frachtu i podstawowej obsługi portowej. Odrębnie wyceniamy: odprawę celną, ubezpieczenie, odbiór z fabryki, konsolidację i dostawę door-to-door.",
+      body: "To narzędzie planistyczne oparte na przykładowych stawkach frachtowych. Dokładna wycena wymaga weryfikacji kodu CN/TARIC, trasy i specyfiki ładunku.",
+      bullets: [
+        "Towary niebezpieczne, baterie litowe, chemia i żywność",
+        "Akcyza, cła antydumpingowe i procedury specjalne",
+        "Door-to-door z odbiorem z fabryki (poza wybranym incotermem)",
+        "Indywidualne stawki portowe dla konkretnych portów załadunku",
+      ],
     },
   ],
   cta: {
