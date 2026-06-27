@@ -34,7 +34,7 @@ export const roadmapStages: RoadmapStage[] = [
     title: "Wyszukiwanie dostawcy",
     description:
       "Identyfikujemy i weryfikujemy producentów dopasowanych do Twoich wymagań. Przeprowadzamy RFQ, negocjacje i shortlistę kandydatów.",
-    cta: { label: "Zobacz jak szukamy", href: "/kontakt" },
+    cta: { label: "Zobacz jak szukamy", href: "/uslugi/wyszukiwanie-dostawcow" },
     theme: {
       bg: "#1a2e1a",
       accent: "#4ade80",

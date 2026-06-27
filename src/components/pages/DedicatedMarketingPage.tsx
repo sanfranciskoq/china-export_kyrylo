@@ -10,19 +10,23 @@ import { PageCtaBand } from "@/components/pages/PageCtaBand";
 type DedicatedMarketingPageProps = {
   content: DedicatedPageContent;
   breadcrumbs?: BreadcrumbItem[];
+  beforeSections?: ReactNode;
   widget?: ReactNode;
   afterSections?: ReactNode;
   children?: ReactNode;
   numberedSections?: boolean;
+  skipSections?: boolean;
 };
 
 export function DedicatedMarketingPage({
   content,
   breadcrumbs,
+  beforeSections,
   widget,
   afterSections,
   children,
   numberedSections = false,
+  skipSections = false,
 }: DedicatedMarketingPageProps) {
   return (
     <DedicatedPageShell breadcrumbs={breadcrumbs}>
@@ -32,15 +36,19 @@ export function DedicatedMarketingPage({
         lead={content.hero.lead}
       />
 
-      <div className="space-y-6 pb-8">
-        {content.sections.map((section, index) => (
-          <PageContentSectionBlock
-            key={section.title}
-            {...section}
-            index={numberedSections ? index : undefined}
-          />
-        ))}
-      </div>
+      {beforeSections}
+
+      {!skipSections && (
+        <div className="space-y-6 pb-8">
+          {content.sections.map((section, index) => (
+            <PageContentSectionBlock
+              key={section.title}
+              {...section}
+              index={numberedSections ? index : undefined}
+            />
+          ))}
+        </div>
+      )}
 
       {content.highlights && content.highlights.length > 0 && (
         <div className="pb-8">

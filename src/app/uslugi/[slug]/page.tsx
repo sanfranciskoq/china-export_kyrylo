@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
+import { SourcingProcessCarousel } from "@/components/services/SourcingProcessCarousel";
 import {
   getPageContentByServiceSlug,
   getRequiredPageContentByServiceSlug,
@@ -49,6 +50,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
         { label: "Usługi", href: "/uslugi" },
         { label: service.title },
       ]}
+      beforeSections={
+        content.processCarousel ? (
+          <SourcingProcessCarousel
+            {...content.processCarousel}
+            asideSections={content.sections}
+          />
+        ) : undefined
+      }
+      skipSections={Boolean(content.processCarousel)}
       numberedSections
     />
   );
