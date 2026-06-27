@@ -16,11 +16,11 @@ export function HeroSection() {
       aria-label="Strona główna"
     >
       <HeroBackground />
-      <HeroFlowOverlay className="z-[1]" />
+      <HeroFlowOverlay className="z-[2]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 sm:px-6 lg:px-8">
+      <div className="pointer-events-none relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 sm:px-6 lg:px-8">
         <motion.header
-          className="relative pt-16 text-center lg:pt-20"
+          className="pointer-events-auto relative pt-16 text-center lg:pt-20"
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
@@ -46,7 +46,7 @@ export function HeroSection() {
         />
 
         <motion.footer
-          className="pb-10 text-center lg:pb-12"
+          className="pointer-events-auto pb-10 text-center lg:pb-12"
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}

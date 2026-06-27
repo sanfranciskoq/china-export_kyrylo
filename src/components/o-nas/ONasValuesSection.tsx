@@ -1,4 +1,13 @@
-import type { ONasValueCard } from "@/content/o-nas-layout";
+"use client";
+
+import { FileCheck, Layers, ShieldCheck, type LucideIcon } from "lucide-react";
+import type { ONasValueCard, ONasValueIcon } from "@/content/o-nas-layout";
+
+const valueIcons: Record<ONasValueIcon, LucideIcon> = {
+  layers: Layers,
+  "shield-check": ShieldCheck,
+  "file-check": FileCheck,
+};
 
 type ONasValuesSectionProps = {
   eyebrow: string;
@@ -29,27 +38,31 @@ export function ONasValuesSection({
       </div>
 
       <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map(({ icon: Icon, label, title: cardTitle, body: cardBody }) => (
-          <div
-            key={label}
-            className="group flex flex-col gap-6 bg-surface p-8 transition-colors duration-300 hover:bg-navy-light lg:p-10"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex h-12 w-12 items-center justify-center border border-white/10 transition-colors group-hover:border-accent-light/40">
-                <Icon size={20} className="text-accent-light" aria-hidden />
+        {cards.map(({ icon, label, title: cardTitle, body: cardBody }) => {
+          const Icon = valueIcons[icon] ?? Layers;
+
+          return (
+            <div
+              key={label}
+              className="group flex flex-col gap-6 bg-surface p-8 transition-colors duration-300 hover:bg-navy-light lg:p-10"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center border border-white/10 transition-colors group-hover:border-accent-light/40">
+                  <Icon size={20} className="text-accent-light" aria-hidden />
+                </div>
+                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/45">
+                  {label}
+                </span>
               </div>
-              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/45">
-                {label}
-              </span>
+              <div>
+                <h3 className="mb-3 text-xl font-bold leading-tight text-white">
+                  {cardTitle}
+                </h3>
+                <p className="text-sm leading-relaxed text-white/55">{cardBody}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="mb-3 text-xl font-bold leading-tight text-white">
-                {cardTitle}
-              </h3>
-              <p className="text-sm leading-relaxed text-white/55">{cardBody}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

@@ -1,10 +1,6 @@
-import {
-  FileCheck,
-  Layers,
-  ShieldCheck,
-  type LucideIcon,
-} from "lucide-react";
 import { oNasPage } from "@/content/pages/o-nas";
+
+export type ONasValueIcon = "layers" | "shield-check" | "file-check";
 
 export type ONasHighlight = {
   label: string;
@@ -16,7 +12,7 @@ export type ONasHighlight = {
 };
 
 export type ONasValueCard = {
-  icon: LucideIcon;
+  icon: ONasValueIcon;
   label: string;
   title: string;
   body: string;
@@ -78,19 +74,19 @@ export const oNasLayout = {
     body: oNasPage.sections[1].body,
     cards: [
       {
-        icon: Layers,
+        icon: "layers",
         label: "MODUŁOWOŚĆ",
         title: "Bez sztywnego pakietu",
         body: oNasPage.sections[1].bullets![0],
       },
       {
-        icon: ShieldCheck,
+        icon: "shield-check",
         label: "BEZPIECZEŃSTWO",
         title: "Weryfikacja przed płatnością",
         body: oNasPage.sections[1].bullets![1],
       },
       {
-        icon: FileCheck,
+        icon: "file-check",
         label: "DOKUMENTACJA",
         title: "Zgodność z wymogami UE",
         body: oNasPage.sections[1].bullets![2],

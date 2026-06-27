@@ -1,3 +1,5 @@
+"use client";
+
 import { SectionEdgeFade } from "@/components/backgrounds/SectionEdgeFade";
 import { ProcesCta } from "@/components/proces/ProcesCta";
 import { ProcesHero } from "@/components/proces/ProcesHero";

@@ -24,7 +24,7 @@ type ProcesStepRowProps = {
 export function ProcesStepRow({ step, index, totalSteps }: ProcesStepRowProps) {
   const { ref, visible } = useVisible();
   const [hovered, setHovered] = useState(false);
-  const Icon = stepIcons[step.icon];
+  const Icon = stepIcons[step.icon] ?? FileText;
   const isLast = index === totalSteps - 1;
 
   return (
