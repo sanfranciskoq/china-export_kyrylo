@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
-import { PageTrustGrid } from "@/components/pages/PageTrustGrid";
-import { getRequiredPageContent } from "@/content/pages";
-
-const content = getRequiredPageContent("o-nas");
+import { DedicatedPageShell } from "@/components/pages/DedicatedPageShell";
+import { ONasPageContent } from "@/components/o-nas/ONasPageContent";
+import { oNasPage } from "@/content/pages/o-nas";
 
 export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
+  title: oNasPage.meta.title,
+  description: oNasPage.meta.description,
 };
 
 export default function ONasPage() {
   return (
-    <DedicatedMarketingPage
-      content={content}
+    <DedicatedPageShell
       breadcrumbs={[
         { label: "Strona główna", href: "/" },
         { label: "O nas" },
       ]}
-      afterSections={<PageTrustGrid />}
-    />
+    >
+      <ONasPageContent />
+    </DedicatedPageShell>
   );
 }

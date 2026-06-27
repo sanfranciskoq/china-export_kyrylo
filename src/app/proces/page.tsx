@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { CooperationRoadmap } from "@/components/roadmap/CooperationRoadmap";
-import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
-import { getRequiredPageContent } from "@/content/pages";
-
-const content = getRequiredPageContent("proces");
+import { DedicatedPageShell } from "@/components/pages/DedicatedPageShell";
+import { ProcesPageContent } from "@/components/proces/ProcesPageContent";
+import { procesPage } from "@/content/pages/proces";
 
 export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
+  title: procesPage.meta.title,
+  description: procesPage.meta.description,
 };
 
 export default function ProcesPage() {
   return (
-    <DedicatedMarketingPage
-      content={content}
+    <DedicatedPageShell
       breadcrumbs={[
         { label: "Strona główna", href: "/" },
         { label: "Proces" },
       ]}
-      widget={<CooperationRoadmap embedded />}
-    />
+    >
+      <ProcesPageContent />
+    </DedicatedPageShell>
   );
 }
