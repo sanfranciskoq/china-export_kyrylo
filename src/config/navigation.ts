@@ -13,13 +13,7 @@ export const navGroups: NavGroup[] = [
       { href: "/proces", label: "Proces" },
       { href: "/o-nas", label: "O nas" },
       { href: "/realizacje", label: "Realizacje" },
-    ],
-  },
-  {
-    label: "My w Chinach",
-    items: [
-      { href: "/zespol-w-chinach", label: "Zespół w Chinach" },
-      { href: "/wyjazdy-do-chin", label: "Wyjazdy do Chin" },
+      { href: "/zespol-w-chinach", label: "My w Chinach" },
     ],
   },
   {

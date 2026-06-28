@@ -1,33 +1,27 @@
 import type { Metadata } from "next";
-import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
-import { PageImagePanel } from "@/components/pages/PageImagePanel";
-import { getRequiredAboutPanel } from "@/content/about-grid";
-import { getRequiredPageContent } from "@/content/pages";
-
-const content = getRequiredPageContent("zespol-w-chinach");
-const panel = getRequiredAboutPanel("team-china");
+import { DedicatedPageShell } from "@/components/pages/DedicatedPageShell";
+import { PageCtaBand } from "@/components/pages/PageCtaBand";
+import { MyWChinachPageContent } from "@/components/my-w-chinach/MyWChinachPageContent";
+import { myWChinachLayout } from "@/content/my-w-chinach-layout";
 
 export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
+  title: myWChinachLayout.meta.title,
+  description: myWChinachLayout.meta.description,
 };
 
 export default function ZespolWChinachPage() {
   return (
-    <DedicatedMarketingPage
-      content={content}
+    <DedicatedPageShell
       breadcrumbs={[
         { label: "Strona główna", href: "/" },
-        { label: "My w Chinach", href: "/zespol-w-chinach" },
-        { label: "Zespół w Chinach" },
+        { label: "My w Chinach" },
       ]}
-      afterSections={
-        <PageImagePanel
-          src={panel.image}
-          alt={panel.imageAlt}
-          title={panel.imageAlt}
-        />
-      }
-    />
+    >
+      <MyWChinachPageContent />
+      <PageCtaBand
+        primary={myWChinachLayout.cta.primary}
+        secondary={myWChinachLayout.cta.secondary}
+      />
+    </DedicatedPageShell>
   );
 }
