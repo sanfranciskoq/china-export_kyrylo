@@ -1,5 +1,17 @@
 import { LogisticsBackdrop } from "@/components/backgrounds/LogisticsBackdrop";
+import { navGroups } from "@/config/navigation";
 import Link from "next/link";
+
+const footerLinkClassName =
+  "text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-light focus-visible:ring-offset-2 focus-visible:ring-offset-navy";
+
+const footerServices =
+  navGroups.find((group) => group.label === "Usługi")?.items.filter(
+    (item) => item.serviceId,
+  ) ?? [];
+
+const footerPages =
+  navGroups.find((group) => group.label === "Narzędzia")?.items ?? [];
 
 export function Footer() {
   return (
@@ -25,11 +37,14 @@ export function Footer() {
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">
               Usługi
             </h3>
-            <ul className="space-y-2 text-sm text-white/60">
-              <li>Wyszukiwanie dostawców</li>
-              <li>Audyty fabryk</li>
-              <li>Kontrola jakości</li>
-              <li>Spedycja i logistyka</li>
+            <ul className="space-y-2 text-sm">
+              {footerServices.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={footerLinkClassName}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -38,21 +53,13 @@ export function Footer() {
               Strony
             </h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/kalkulator" className="text-white/60 hover:text-white">
-                  Kalkulator importu
-                </Link>
-              </li>
-              <li>
-                <Link href="/konsultacja" className="text-white/60 hover:text-white">
-                  Umów konsultację
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontakt" className="text-white/60 hover:text-white">
-                  Kontakt
-                </Link>
-              </li>
+              {footerPages.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={footerLinkClassName}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -60,10 +67,21 @@ export function Footer() {
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/40">
               Kontakt
             </h3>
-            <ul className="space-y-2 text-sm text-white/60">
-              <li>kontakt@china-export.pl</li>
-              <li>+48 000 000 000</li>
-              <li>Warszawa, Polska</li>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="mailto:kontakt@china-export.pl"
+                  className={footerLinkClassName}
+                >
+                  kontakt@china-export.pl
+                </a>
+              </li>
+              <li>
+                <a href="tel:+48000000000" className={footerLinkClassName}>
+                  +48 000 000 000
+                </a>
+              </li>
+              <li className="text-white/60">Warszawa, Polska</li>
             </ul>
           </div>
         </div>
