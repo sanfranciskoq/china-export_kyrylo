@@ -91,18 +91,18 @@ export const roadmapStages: RoadmapStage[] = [
   },
   {
     id: "freight",
-    title: "Transport morski / lotniczy",
+    title: "Transport kolejowy / lotniczy",
     description:
-      "Organizujemy fracht FCL/LCL lub lotniczy, śledzimy kontener i informujemy o statusie na każdym etapie trasy.",
+      "Organizujemy fracht kolejowy i lotniczy, śledzimy ładunek i informujemy o statusie na każdym etapie trasy Chiny–Europa.",
     cta: { label: "Oblicz transport", href: "/kalkulator" },
     theme: {
       bg: "#0a2540",
       accent: "#22d3ee",
       gradient: "from-cyan-950 via-surface-deep to-surface",
     },
-    icon: "ship",
-    image: "/roadmap/freight.jpg",
-    imageAlt: "Statek towarowy na morzu — transport morski",
+    icon: "train",
+    image: "/image/road_shipment.jpg",
+    imageAlt: "Transport kolejowy — fracht z Chin do Europy",
   },
   {
     id: "delivery",
