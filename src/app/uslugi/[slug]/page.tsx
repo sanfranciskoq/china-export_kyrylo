@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { LogistykaPageContent } from "@/components/logistyka/LogistykaPageContent";
 import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
+import { DedicatedPageShell } from "@/components/pages/DedicatedPageShell";
+import { PageCtaBand } from "@/components/pages/PageCtaBand";
 import { FeaturedStepsPanel } from "@/components/services/FeaturedStepsPanel";
 import { SourcingProcessCarousel } from "@/components/services/SourcingProcessCarousel";
 import {
   getPageContentByServiceSlug,
   getRequiredPageContentByServiceSlug,
 } from "@/content/pages";
+import { logistykaLayout } from "@/content/logistyka-layout";
 import { getServiceBySlug, getServiceNavSlugs } from "@/content/services";
 
 type ServicePageProps = {
@@ -42,6 +46,24 @@ export default async function ServicePage({ params }: ServicePageProps) {
   }
 
   const content = getRequiredPageContentByServiceSlug(slug);
+
+  if (slug === "spedycja-i-logistyka") {
+    return (
+      <DedicatedPageShell
+        breadcrumbs={[
+          { label: "Strona główna", href: "/" },
+          { label: "Usługi", href: "/uslugi" },
+          { label: service.title },
+        ]}
+      >
+        <LogistykaPageContent />
+        <PageCtaBand
+          primary={logistykaLayout.cta.primary}
+          secondary={logistykaLayout.cta.secondary}
+        />
+      </DedicatedPageShell>
+    );
+  }
 
   return (
     <DedicatedMarketingPage

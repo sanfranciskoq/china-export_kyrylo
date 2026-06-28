@@ -11,6 +11,9 @@ type MyWChinachHeroProps = {
   lead: string;
   image: string;
   imageAlt: string;
+  headingId?: string;
+  imageOverlayTitle?: string;
+  imageOverlayBody?: string;
 };
 
 export function MyWChinachHero({
@@ -19,13 +22,16 @@ export function MyWChinachHero({
   lead,
   image,
   imageAlt,
+  headingId = "my-w-chinach-hero-heading",
+  imageOverlayTitle = "Operacje terenowe",
+  imageOverlayBody = "Sourcing, kontrola jakości i wsparcie negocjacyjne — wszystko koordynowane lokalnie, z raportowaniem do Polski.",
 }: MyWChinachHeroProps) {
   const [imageError, setImageError] = useState(false);
   const { fadeUp, headerTransition } = useMotionConfig();
 
   return (
     <section
-      aria-labelledby="my-w-chinach-hero-heading"
+      aria-labelledby={headingId}
       className="mx-auto max-w-7xl px-4 pb-8 pt-8 sm:px-6 lg:px-8 lg:pb-12 lg:pt-12"
     >
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -40,7 +46,7 @@ export function MyWChinachHero({
             {eyebrow}
           </p>
           <h1
-            id="my-w-chinach-hero-heading"
+            id={headingId}
             className="text-4xl leading-[0.95] font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
             {title}
@@ -80,11 +86,10 @@ export function MyWChinachHero({
           />
           <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-8">
             <p className="text-xs font-semibold tracking-widest text-accent-light uppercase">
-              Operacje terenowe
+              {imageOverlayTitle}
             </p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/80">
-              Sourcing, kontrola jakości i wsparcie negocjacyjne — wszystko
-              koordynowane lokalnie, z raportowaniem do Polski.
+              {imageOverlayBody}
             </p>
           </div>
         </motion.div>
