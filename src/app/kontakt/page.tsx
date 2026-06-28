@@ -1,25 +1,22 @@
 import type { Metadata } from "next";
-import { DedicatedMarketingPage } from "@/components/pages/DedicatedMarketingPage";
-import { ContactForm } from "@/components/forms/ContactForm";
-import { getRequiredPageContent } from "@/content/pages";
-
-const content = getRequiredPageContent("kontakt");
+import { KontaktPageContent } from "@/components/kontakt/KontaktPageContent";
+import { DedicatedPageShell } from "@/components/pages/DedicatedPageShell";
+import { kontaktLayout } from "@/content/kontakt-layout";
 
 export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
+  title: kontaktLayout.meta.title,
+  description: kontaktLayout.meta.description,
 };
 
 export default function KontaktPage() {
   return (
-    <DedicatedMarketingPage
-      content={content}
+    <DedicatedPageShell
       breadcrumbs={[
         { label: "Strona główna", href: "/" },
         { label: "Kontakt" },
       ]}
     >
-      <ContactForm />
-    </DedicatedMarketingPage>
+      <KontaktPageContent />
+    </DedicatedPageShell>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { roadmapStages } from "@/content/roadmap.stages";
 
 const STAGE_COUNT = roadmapStages.length;
@@ -75,26 +75,6 @@ export function useRoadmapScrub() {
     },
     [activeIndex, goToStage],
   );
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
-        e.preventDefault();
-        setProgressState((p) => {
-          const delta = e.deltaY > 0 ? 0.04 : -0.04;
-          const next = Math.max(0, Math.min(1, p + delta));
-          const idx = Math.round(next * (STAGE_COUNT - 1));
-          return idx / (STAGE_COUNT - 1);
-        });
-      }
-    };
-
-    track.addEventListener("wheel", onWheel, { passive: false });
-    return () => track.removeEventListener("wheel", onWheel);
-  }, [setProgress]);
 
   return {
     progress,
